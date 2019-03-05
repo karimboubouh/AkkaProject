@@ -15,18 +15,18 @@ object UM6P extends App {
   var as = ActorSystem("UM6PApp")
   val ua = as.actorOf(Props[University], "UniversityActor")
   println(ua.path)
-//  ua ! createDepartment("Informatics")
-//
-//
+  ua ! createDepartment("Informatics")
+  ua ! createDepartment("Physics")
+  ua ! createDepartment("Chemistry")
 
-  val uFuture1 =
-  val result = Await.result(uFuture1, timeout.duration).asInstanceOf[ActorRef]
-  println(result)
-
-  val fagent = for {
-    x <- ua ? createDepartment("Informatics")
-    y <- ua ? createDepartment("Physics")
-    z <- ua ? createDepartment("Chemistry")
-  } yield (x + y)
+  //  val uFuture1 =
+  //  val result = Await.result(uFuture1, timeout.duration).asInstanceOf[ActorRef]
+  //  println(result)
+  //
+  //  val fagent = for {
+  //    x <- ua ? createDepartment("Informatics")
+  //    y <- ua ? createDepartment("Physics")
+  //    z <- ua ? createDepartment("Chemistry")
+  //  } yield (x + y)
 
 }
