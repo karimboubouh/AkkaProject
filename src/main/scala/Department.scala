@@ -12,6 +12,7 @@ object DProtocol {
   case class createCourse(id: Int, name: String)
 
   case class associateStudent(ar: ActorRef)
+  case class studentAssociated(ar: ActorRef)
 
   case class Response(status: Int)
 
@@ -42,8 +43,10 @@ class Department(dName: String) extends Actor {
       } else {
         sender ! "Student " + ar.path + " not registered into " + context.parent.path
       }
-
-
+    case "getCourses" =>
+      sender ! courses
+    case studentAssociated(ar) =>
+      sender ! students.contains(ar)
     case _ =>
       println("Class Department")
   }
